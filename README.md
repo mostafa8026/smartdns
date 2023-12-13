@@ -1,7 +1,5 @@
 # SmartDNS
-Use for passing the Sanctions
-
-
+You can easily set your favorite dns by deploying this repository as a DNS server.
 
 <h2>Step 1:</h2>
 prepare a linux server (ubuntu/debian) with a PUBLIC IP address available on it.<br/>
@@ -12,18 +10,15 @@ https://support.netfoundry.io/hc/en-us/articles/360057865692-Installing-Docker-a
 Clone this repo onto your server using this command (you have to install git first using "sudo apt install git"):<br/>
 <code>$sudo git clone https://github.com/arezoomaleki/smartdns.git</code>
 
-
 <h2>Step 3:</h2>
-go to the smartdns directory and change SERVER_IP in Dockerfile.
+Finally you can provide your Server IP by simply copying the .env.sample.
 
-
-
-<h2>Step 4:</h2>
-<code>$cd smartdns</code><br/>
-<code>$sudo docker build . -t smartdns:latest</code><br/>
-<code>$docker run -d -it --cap-add=NET_ADMIN -p 53:53/udp -p 443:443 -p 80:80 -e IP=ServerPublicIP smartdns:latest</code><br/>
+<code>$ cd smartdns</code><br/>
+<code>$ sudo cp .env.sample .env</code><br/>
+<code># edit the IP field to your server IP</code><br/>
+<code>$ docker compose up --build -d</code><br/>
 <br/><br/>
 <div style='color: red'>
   <b>P.S:</b><br/>
-  <b>Everytime you add a domain into dnsmasq.conf and domains.txt you have to remove your container, build a new docker image and docker run again.</b>
+  <b>Everytime you add a domain into dnsmasq.conf and domains.txt you have to run the <code>docker compose up --build -d</code></b>
 <div>
